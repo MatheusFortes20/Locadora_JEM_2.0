@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace Locadora_JEM_20.Controllers;
-public class LocacaoController
+public class LocacaoController : ControllerBase
 {
     // Verificar filmes disponíveis
 

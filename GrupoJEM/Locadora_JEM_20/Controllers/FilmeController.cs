@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace Locadora_JEM_20.Controllers;
-public class FilmeController
+public class FilmeController : ControllerBase
 {
 
 // Cadastrar Filme
@@ -15,9 +17,5 @@ public class FilmeController
     // Verificar filmes locados
             
     //  Devolver filme    ( Contador de quantos estão disponiveis de cada filme? id's? )
-
-    
-
-    
 
 }

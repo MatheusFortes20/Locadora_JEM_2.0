@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace Locadora_JEM_20.Controllers;
-public class ClienteController
+public class ClienteController : ControllerBase
 {
 
 // Cadastrar Clientes
