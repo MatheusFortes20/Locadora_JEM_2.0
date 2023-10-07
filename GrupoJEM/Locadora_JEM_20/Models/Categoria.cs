@@ -1,4 +1,3 @@
-
 namespace Locadora_JEM_20.Models;
 public class Categoria
 {

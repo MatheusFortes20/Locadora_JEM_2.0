@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Locadora_JEM_20.Migrations
 {
-    public partial class CriateDb : Migration
+    public partial class DbCreating : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,6 +52,7 @@ namespace Locadora_JEM_20.Migrations
                     Genero = table.Column<string>(type: "TEXT", nullable: true),
                     Sinopse = table.Column<string>(type: "TEXT", nullable: true),
                     Capa = table.Column<string>(type: "TEXT", nullable: true),
+                    Descricao = table.Column<string>(type: "TEXT", nullable: true),
                     CriadoEm = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

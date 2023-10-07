@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Locadora_JEM_20.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20231005055057_AddDescricaoTableFilme")]
-    partial class AddDescricaoTableFilme
+    [Migration("20231006042944_DbCreating")]
+    partial class DbCreating
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

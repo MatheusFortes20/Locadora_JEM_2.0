@@ -1,0 +1,14 @@
+### Listar
+GET https://localhost:7197/api/filme/listar
+
+### Buscar
+GET https://localhost:7197/api/filme/buscar/Forrest%20Gump
+
+### Cadastrar
+POST https://localhost:7197/api/filme/cadastrar
+Content-Type: application/json
+
+{
+  "titulo" : "Forrest Gump",
+  "ano"  : "2000"
+}

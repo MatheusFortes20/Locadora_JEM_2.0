@@ -10,5 +10,6 @@ public class Filme
   public string? Sinopse { get; set; }
   public string? Capa { get; set; }
   public string? Descricao { get; set; }
+  public bool Disponivel { get; set; } = false;
   public DateTime CriadoEm { get; set; }
 }
