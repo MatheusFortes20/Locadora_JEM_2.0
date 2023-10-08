@@ -1,8 +1,9 @@
 namespace Locadora_JEM_20.Models;
 public class Categoria
-{
-  public int Categoriaid { get; set; }
-  public string? Nome { get; set; }
+    {
+        public int CategoriaId { get; set; }
+        public string Nome { get; set; }
 
-  // Falta alguma coisa?
-}
+        // Relacionamento com Filme
+        public List<Filme> Filmes { get; set; } // Uma categoria pode ter vários filmes
+    }

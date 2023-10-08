@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Locadora_JEM_20.Migrations
 {
-    public partial class DBCreate : Migration
+    public partial class CreateDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,13 +13,13 @@ namespace Locadora_JEM_20.Migrations
                 name: "Categorias",
                 columns: table => new
                 {
-                    Categoriaid = table.Column<int>(type: "INTEGER", nullable: false)
+                    CategoriaId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nome = table.Column<string>(type: "TEXT", nullable: true)
+                    Nome = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categorias", x => x.Categoriaid);
+                    table.PrimaryKey("PK_Categorias", x => x.CategoriaId);
                 });
 
             migrationBuilder.CreateTable(
@@ -28,13 +28,11 @@ namespace Locadora_JEM_20.Migrations
                 {
                     ClienteId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nome = table.Column<string>(type: "TEXT", nullable: true),
-                    Email = table.Column<string>(type: "TEXT", nullable: true),
-                    Telefone = table.Column<string>(type: "TEXT", nullable: true),
-                    Endereço = table.Column<string>(type: "TEXT", nullable: true),
-                    CriadoEm = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    LocacaoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    FilmeId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Nome = table.Column<string>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    Telefone = table.Column<string>(type: "TEXT", nullable: false),
+                    Endereco = table.Column<string>(type: "TEXT", nullable: false),
+                    CriadoEm = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,20 +43,27 @@ namespace Locadora_JEM_20.Migrations
                 name: "Filmes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    FilmeId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Titulo = table.Column<string>(type: "TEXT", nullable: true),
+                    Titulo = table.Column<string>(type: "TEXT", nullable: false),
                     Ano = table.Column<int>(type: "INTEGER", nullable: false),
-                    Genero = table.Column<string>(type: "TEXT", nullable: true),
-                    Sinopse = table.Column<string>(type: "TEXT", nullable: true),
-                    Capa = table.Column<string>(type: "TEXT", nullable: true),
-                    Descricao = table.Column<string>(type: "TEXT", nullable: true),
+                    Genero = table.Column<string>(type: "TEXT", nullable: false),
+                    Sinopse = table.Column<string>(type: "TEXT", nullable: false),
+                    Capa = table.Column<string>(type: "TEXT", nullable: false),
+                    Descricao = table.Column<string>(type: "TEXT", nullable: false),
                     Disponivel = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CriadoEm = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    CriadoEm = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CategoriaId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Filmes", x => x.Id);
+                    table.PrimaryKey("PK_Filmes", x => x.FilmeId);
+                    table.ForeignKey(
+                        name: "FK_Filmes_Categorias_CategoriaId",
+                        column: x => x.CategoriaId,
+                        principalTable: "Categorias",
+                        principalColumn: "CategoriaId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,29 +77,34 @@ namespace Locadora_JEM_20.Migrations
                     DataInicio = table.Column<DateTime>(type: "TEXT", nullable: false),
                     DataFim = table.Column<DateTime>(type: "TEXT", nullable: false),
                     FilmeId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ClienteId1 = table.Column<int>(type: "INTEGER", nullable: true),
                     ClienteId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Locacoes", x => x.LocacaoId);
                     table.ForeignKey(
-                        name: "FK_Locacoes_Clientes_ClienteId1",
-                        column: x => x.ClienteId1,
+                        name: "FK_Locacoes_Clientes_ClienteId",
+                        column: x => x.ClienteId,
                         principalTable: "Clientes",
-                        principalColumn: "ClienteId");
+                        principalColumn: "ClienteId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Locacoes_Filmes_FilmeId",
                         column: x => x.FilmeId,
                         principalTable: "Filmes",
-                        principalColumn: "Id",
+                        principalColumn: "FilmeId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Locacoes_ClienteId1",
+                name: "IX_Filmes_CategoriaId",
+                table: "Filmes",
+                column: "CategoriaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Locacoes_ClienteId",
                 table: "Locacoes",
-                column: "ClienteId1");
+                column: "ClienteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Locacoes_FilmeId",
@@ -105,9 +115,6 @@ namespace Locadora_JEM_20.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Categorias");
-
-            migrationBuilder.DropTable(
                 name: "Locacoes");
 
             migrationBuilder.DropTable(
@@ -115,6 +122,9 @@ namespace Locadora_JEM_20.Migrations
 
             migrationBuilder.DropTable(
                 name: "Filmes");
+
+            migrationBuilder.DropTable(
+                name: "Categorias");
         }
     }
 }
