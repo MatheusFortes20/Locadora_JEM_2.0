@@ -1,8 +1,10 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Locadora_JEM_20.Models;
-public class Locacao
+namespace Locadora_JEM_20.Models
+{
+    public class Locacao
     {
         public Locacao()
         {
@@ -18,6 +20,8 @@ public class Locacao
         public DateTime DataInicio { get; set; }
         public DateTime DataFim { get; set; }
 
+        public string Observacoes { get; set; } // Campo de observações
+
         // Relacionamento com Filme
         public int FilmeId { get; set; } // Chave estrangeira
         [ForeignKey("FilmeId")]
@@ -28,3 +32,4 @@ public class Locacao
         [ForeignKey("ClienteId")]
         public Cliente Cliente { get; set; } // A locação está associada a um cliente
     }
+}

@@ -17,21 +17,6 @@ namespace Locadora_JEM_20.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.22");
 
-            modelBuilder.Entity("Locadora_JEM_20.Models.Categoria", b =>
-                {
-                    b.Property<int>("CategoriaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("CategoriaId");
-
-                    b.ToTable("Categorias");
-                });
-
             modelBuilder.Entity("Locadora_JEM_20.Models.Cliente", b =>
                 {
                     b.Property<int>("ClienteId")
@@ -75,9 +60,6 @@ namespace Locadora_JEM_20.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("CategoriaId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("TEXT");
 
@@ -92,6 +74,9 @@ namespace Locadora_JEM_20.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("LocacaoId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Sinopse")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -102,15 +87,12 @@ namespace Locadora_JEM_20.Migrations
 
                     b.HasKey("FilmeId");
 
-                    b.HasIndex("CategoriaId");
-
                     b.ToTable("Filmes");
                 });
 
             modelBuilder.Entity("Locadora_JEM_20.Models.Locacao", b =>
                 {
                     b.Property<int>("LocacaoId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ClienteId")
@@ -128,6 +110,10 @@ namespace Locadora_JEM_20.Migrations
                     b.Property<DateTime>("LocadoEm")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Observacoes")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<float>("Valor")
                         .HasColumnType("REAL");
 
@@ -140,17 +126,6 @@ namespace Locadora_JEM_20.Migrations
                     b.ToTable("Locacoes");
                 });
 
-            modelBuilder.Entity("Locadora_JEM_20.Models.Filme", b =>
-                {
-                    b.HasOne("Locadora_JEM_20.Models.Categoria", "Categoria")
-                        .WithMany("Filmes")
-                        .HasForeignKey("CategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Categoria");
-                });
-
             modelBuilder.Entity("Locadora_JEM_20.Models.Locacao", b =>
                 {
                     b.HasOne("Locadora_JEM_20.Models.Cliente", "Cliente")
@@ -160,19 +135,20 @@ namespace Locadora_JEM_20.Migrations
                         .IsRequired();
 
                     b.HasOne("Locadora_JEM_20.Models.Filme", "Filme")
-                        .WithMany("Locacoes")
+                        .WithMany()
                         .HasForeignKey("FilmeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Locadora_JEM_20.Models.Filme", null)
+                        .WithMany("Locacoes")
+                        .HasForeignKey("LocacaoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Cliente");
 
                     b.Navigation("Filme");
-                });
-
-            modelBuilder.Entity("Locadora_JEM_20.Models.Categoria", b =>
-                {
-                    b.Navigation("Filmes");
                 });
 
             modelBuilder.Entity("Locadora_JEM_20.Models.Cliente", b =>

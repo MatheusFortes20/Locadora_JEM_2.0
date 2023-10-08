@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Locadora_JEM_20.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20231006061931_alteracaomodelcliente")]
-    partial class alteracaomodelcliente
+    [Migration("20231008195739_alteracoesCategoria25")]
+    partial class alteracoesCategoria25
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,9 @@ namespace Locadora_JEM_20.Migrations
                 {
                     b.Property<int>("CategoriaId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("FilmeId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nome")
@@ -67,7 +70,6 @@ namespace Locadora_JEM_20.Migrations
             modelBuilder.Entity("Locadora_JEM_20.Models.Filme", b =>
                 {
                     b.Property<int>("FilmeId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Ano")
@@ -94,6 +96,9 @@ namespace Locadora_JEM_20.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("LocacaoId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Sinopse")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -112,7 +117,6 @@ namespace Locadora_JEM_20.Migrations
             modelBuilder.Entity("Locadora_JEM_20.Models.Locacao", b =>
                 {
                     b.Property<int>("LocacaoId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ClienteId")
@@ -130,6 +134,10 @@ namespace Locadora_JEM_20.Migrations
                     b.Property<DateTime>("LocadoEm")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Observacoes")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<float>("Valor")
                         .HasColumnType("REAL");
 
@@ -145,8 +153,14 @@ namespace Locadora_JEM_20.Migrations
             modelBuilder.Entity("Locadora_JEM_20.Models.Filme", b =>
                 {
                     b.HasOne("Locadora_JEM_20.Models.Categoria", "Categoria")
-                        .WithMany("Filmes")
+                        .WithMany()
                         .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Locadora_JEM_20.Models.Categoria", null)
+                        .WithMany("Filmes")
+                        .HasForeignKey("FilmeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -162,8 +176,14 @@ namespace Locadora_JEM_20.Migrations
                         .IsRequired();
 
                     b.HasOne("Locadora_JEM_20.Models.Filme", "Filme")
-                        .WithMany("Locacoes")
+                        .WithMany()
                         .HasForeignKey("FilmeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Locadora_JEM_20.Models.Filme", null)
+                        .WithMany("Locacoes")
+                        .HasForeignKey("LocacaoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

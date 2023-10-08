@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Locadora_JEM_20.Migrations
 {
-    public partial class CreateDatabase : Migration
+    public partial class alteracoesCategoria : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

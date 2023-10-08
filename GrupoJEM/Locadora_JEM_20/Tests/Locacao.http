@@ -1,0 +1,30 @@
+### Cadastrar uma Locação (Create)
+POST http://localhost:5116/api/locacao/cadastrar
+Content-Type: application/json
+
+{
+    "Valor": 10.99,
+    "LocadoEm": "2023-10-08T12:00:00",
+    "DataInicio": "2023-10-08T12:00:00",
+    "DataFim": "2023-10-11T12:00:00",
+    "FilmeId": 1, // Substitua pelo ID de um filme válido
+    "ClienteId": 1 // Substitua pelo ID de um cliente válido
+}
+
+### Buscar uma Locação por ID (Read)
+GET http://localhost:5116/api/locacao/buscar/1
+
+### Atualizar uma Locação por ID (Update)
+PUT http://localhost:5116/api/locacao/atualizar/1
+Content-Type: application/json
+
+{
+    "Valor": 60.0         // Novo valor da locação (personalize conforme necessário)
+    // Adicione outros campos conforme necessário para atualização
+}
+
+### Deletar uma Locação por ID (Delete)
+DELETE http://localhost:5116/api/locacao/deletar/1
+
+### Listar todas as Locações (Read)
+GET http://localhost:5116/api/locacao/listar
