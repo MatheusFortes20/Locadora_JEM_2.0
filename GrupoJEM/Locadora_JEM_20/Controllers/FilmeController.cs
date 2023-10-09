@@ -15,24 +15,31 @@ namespace Locadora_JEM_20.Controllers
         public FilmeController(AppDataContext ctx) => _ctx = ctx;
 
         // Create (Criação de um novo filme)
-        [HttpPost]
-        [Route("cadastrar")]
-        public IActionResult Cadastrar([FromBody] Filme filme)
-        {
-            int anoAtual = DateTime.Now.Year;
+        // Create (Criação de um novo filme)
+[HttpPost]
+[Route("cadastrar")]
+public IActionResult Cadastrar([FromBody] Filme filme)
+{
+    int anoAtual = DateTime.Now.Year;
 
-            // Regra de Ano de Lançamento: O ano de lançamento do filme deve estar entre 1990 e o ano atual.
-            if (filme.Ano < 1990 || filme.Ano > anoAtual)
-            {
-                return BadRequest("O ano de lançamento do filme deve estar entre 1990 e " + anoAtual + ".");
-            }
+    // Regra de Ano de Lançamento: O ano de lançamento do filme deve estar entre 1990 e o ano atual.
+    if (filme.Ano < 1990 || filme.Ano > anoAtual)
+    {
+        return BadRequest("O ano de lançamento do filme deve estar entre 1990 e " + anoAtual + ".");
+    }
 
-            // Adicione o filme ao contexto e salve as alterações
-            _ctx.Filmes.Add(filme);
-            _ctx.SaveChanges();
+    // Regra de Título Único: Verifique se o título do filme já existe no banco de dados.
+    if (_ctx.Filmes.Any(f => f.Titulo == filme.Titulo))
+    {
+        return BadRequest("Já existe um filme com o mesmo título.");
+    }
 
-            return Created("", filme);
-        }
+    // Adicione o filme ao contexto e salve as alterações
+    _ctx.Filmes.Add(filme);
+    _ctx.SaveChanges();
+
+    return Created("", filme);
+}
 
         // Read (Recuperação de um filme por ID)
         [HttpGet]
