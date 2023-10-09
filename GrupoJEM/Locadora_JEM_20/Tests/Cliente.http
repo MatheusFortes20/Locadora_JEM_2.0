@@ -2,15 +2,15 @@
 GET http://localhost:5116/api/cliente/listar
 
 ### Buscar Cliente por Nome
-GET http://localhost:5116/api/cliente/buscar/Maria2322
+GET http://localhost:5116/api/cliente/buscar/Maria23221
 
 ### Cadastrar Cliente
 POST http://localhost:5116/api/cliente/cadastrar
 Content-Type: application/json
 
 {
-    "Nome": "Maria2322",
-    "Email": "mariabonita@gmail.com",
+    "Nome": "Maria23221",
+    "Email": "mariabonita2@gmail.com",
     "Telefone": "998890987",
     "Endereco": "rua do passarinho 520",
     "Locacoes": []
@@ -29,4 +29,4 @@ Content-Type: application/json
 }
 
 ### Deletar Cliente
-DELETE http://localhost:5116/api/cliente/deletar/2
+DELETE http://localhost:5116/api/cliente/deletar/1

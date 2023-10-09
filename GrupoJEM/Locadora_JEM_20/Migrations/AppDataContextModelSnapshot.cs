@@ -60,6 +60,12 @@ namespace Locadora_JEM_20.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ClienteId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("TEXT");
 
@@ -74,9 +80,6 @@ namespace Locadora_JEM_20.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("LocacaoId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Sinopse")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -87,15 +90,19 @@ namespace Locadora_JEM_20.Migrations
 
                     b.HasKey("FilmeId");
 
+                    b.HasIndex("ClienteId");
+
                     b.ToTable("Filmes");
                 });
 
             modelBuilder.Entity("Locadora_JEM_20.Models.Locacao", b =>
                 {
                     b.Property<int>("LocacaoId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ClienteId")
+                    b.Property<int?>("ClienteId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DataFim")
@@ -104,7 +111,8 @@ namespace Locadora_JEM_20.Migrations
                     b.Property<DateTime>("DataInicio")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("FilmeId")
+                    b.Property<int?>("FilmeId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("LocadoEm")
@@ -126,6 +134,15 @@ namespace Locadora_JEM_20.Migrations
                     b.ToTable("Locacoes");
                 });
 
+            modelBuilder.Entity("Locadora_JEM_20.Models.Filme", b =>
+                {
+                    b.HasOne("Locadora_JEM_20.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId");
+
+                    b.Navigation("Cliente");
+                });
+
             modelBuilder.Entity("Locadora_JEM_20.Models.Locacao", b =>
                 {
                     b.HasOne("Locadora_JEM_20.Models.Cliente", "Cliente")
@@ -140,23 +157,12 @@ namespace Locadora_JEM_20.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Locadora_JEM_20.Models.Filme", null)
-                        .WithMany("Locacoes")
-                        .HasForeignKey("LocacaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Cliente");
 
                     b.Navigation("Filme");
                 });
 
             modelBuilder.Entity("Locadora_JEM_20.Models.Cliente", b =>
-                {
-                    b.Navigation("Locacoes");
-                });
-
-            modelBuilder.Entity("Locadora_JEM_20.Models.Filme", b =>
                 {
                     b.Navigation("Locacoes");
                 });

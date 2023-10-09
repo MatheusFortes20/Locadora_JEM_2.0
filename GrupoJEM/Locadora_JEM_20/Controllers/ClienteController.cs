@@ -1,11 +1,10 @@
-namespace Locadora_JEM_20.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Locadora_JEM_20.Data;
 using Locadora_JEM_20.Models;
-
 
 [ApiController]
 [Route("api/cliente")]
@@ -60,6 +59,12 @@ public class ClienteController : ControllerBase
     {
         try
         {
+            // Verifique se o endereço de e-mail já está em uso
+            if (_ctx.Clientes.Any(x => x.Email == cliente.Email))
+            {
+                return BadRequest("O endereço de e-mail já está em uso.");
+            }
+
             _ctx.Clientes.Add(cliente);
             _ctx.SaveChanges();
             return Created("", cliente);

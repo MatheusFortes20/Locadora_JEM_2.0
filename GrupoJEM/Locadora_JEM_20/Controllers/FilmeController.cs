@@ -1,9 +1,7 @@
 using Locadora_JEM_20.Data;
 using Locadora_JEM_20.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Locadora_JEM_20.Controllers
@@ -18,15 +16,23 @@ namespace Locadora_JEM_20.Controllers
 
         // Create (Criação de um novo filme)
         [HttpPost]
-[Route("cadastrar")]
-public IActionResult Cadastrar([FromBody] Filme filme)
-{
-    // Adicione o filme ao contexto e salve as alterações
-    _ctx.Filmes.Add(filme);
-    _ctx.SaveChanges();
+        [Route("cadastrar")]
+        public IActionResult Cadastrar([FromBody] Filme filme)
+        {
+            int anoAtual = DateTime.Now.Year;
 
-    return Created("", filme);
-}
+            // Regra de Ano de Lançamento: O ano de lançamento do filme deve estar entre 1990 e o ano atual.
+            if (filme.Ano < 1990 || filme.Ano > anoAtual)
+            {
+                return BadRequest("O ano de lançamento do filme deve estar entre 1990 e " + anoAtual + ".");
+            }
+
+            // Adicione o filme ao contexto e salve as alterações
+            _ctx.Filmes.Add(filme);
+            _ctx.SaveChanges();
+
+            return Created("", filme);
+        }
 
         // Read (Recuperação de um filme por ID)
         [HttpGet]
@@ -53,7 +59,14 @@ public IActionResult Cadastrar([FromBody] Filme filme)
             if (filme != null)
             {
                 filme.Titulo = novoFilme.Titulo;
-                // Atualize outros campos conforme necessário
+                filme.Ano = novoFilme.Ano;
+                filme.Genero = novoFilme.Genero;
+                filme.Sinopse = novoFilme.Sinopse;
+                filme.Capa = novoFilme.Capa;
+                filme.Descricao = novoFilme.Descricao;
+                filme.Disponivel = novoFilme.Disponivel;
+
+                // Salve as alterações no contexto
                 _ctx.SaveChanges();
                 return Ok(filme);
             }
@@ -70,6 +83,12 @@ public IActionResult Cadastrar([FromBody] Filme filme)
 
             if (filme != null)
             {
+                // Regra de Disponibilidade: Verifique se o filme está disponível antes de excluí-lo.
+                if (!filme.Disponivel)
+                {
+                    return BadRequest("O filme não pode ser excluído porque não está disponível.");
+                }
+
                 _ctx.Filmes.Remove(filme);
                 _ctx.SaveChanges();
                 return NoContent();
@@ -83,7 +102,7 @@ public IActionResult Cadastrar([FromBody] Filme filme)
         [Route("listar")]
         public IActionResult Listar()
         {
-            List<Filme> filmes = _ctx.Filmes.ToList();
+            var filmes = _ctx.Filmes.ToList();
 
             if (filmes.Count == 0)
             {

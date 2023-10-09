@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Locadora_JEM_20.Models
 {
-    public class Cliente
+     public class Cliente
     {
         public Cliente()
         {
@@ -23,6 +22,6 @@ namespace Locadora_JEM_20.Models
         public DateTime CriadoEm { get; set; }
 
         // Relacionamento com Locacao
-        public List<Locacao> Locacoes { get; set; } // Um cliente pode locar vários filmes
+        public List<Locacao> Locacoes { get; set; } = null; // Um cliente pode locar vários filmes
     }
 }
