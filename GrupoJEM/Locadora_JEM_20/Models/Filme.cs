@@ -23,7 +23,4 @@ namespace Locadora_JEM_20.Models
     public bool Disponivel { get; set; } = false;
     public DateTime CriadoEm { get; set; }
 
-    // Relacionamento com Locacao
-    public Cliente? Cliente { get; set; }
-    public int ClientId { get; set; } // O valor padrão é null
 }   }

@@ -5,31 +5,28 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Locadora_JEM_20.Models
 {
    public class Locacao
+{
+    public Locacao()
     {
-        public Locacao()
-        {
-            LocadoEm = DateTime.Now;
-            DataInicio = LocadoEm;
-            DataFim = LocadoEm.AddDays(3);
-        }
+        LocadoEm = DateTime.Now;
+        DataInicio = LocadoEm;
+        DataFim = LocadoEm.AddDays(3);
+    }
 
-        [Key] // Indica a chave primária
-        public int LocacaoId { get; set; }
-        public float Valor { get; set; }
-        public DateTime LocadoEm { get; set; }
-        public DateTime DataInicio { get; set; }
-        public DateTime DataFim { get; set; }
+    [Key]
+    public int LocacaoId { get; set; }
+    public float Valor { get; set; }
+    public DateTime LocadoEm { get; set; }
+    public DateTime DataInicio { get; set; }
+    public DateTime DataFim { get; set; }
 
-        public string Observacoes { get; set; } // Campo de observações
+    public string Observacoes { get; set; }
 
-        // Relacionamento com Filme
-        public int? FilmeId { get; set; } // Chave estrangeira
-    [ForeignKey("FilmeId")]
-    public Filme Filme { get; set; } // A locação está associada a um filme
 
-    // Relacionamento com Cliente
-    public int? ClienteId { get; set; } // Chave estrangeira
-    [ForeignKey("ClienteId")]
-    public Cliente Cliente { get; set; } // A locação está associada a um cliente
+    public Filme? Filme { get; set; }
+    public int FilmeId { get; set; }
+
+    public Cliente? Cliente { get; set; }
+    public int ClienteId { get; set; }
 }
-}
+  }

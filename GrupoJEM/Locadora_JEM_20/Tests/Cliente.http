@@ -9,11 +9,10 @@ POST http://localhost:5116/api/cliente/cadastrar
 Content-Type: application/json
 
 {
-    "Nome": "Maria23221",
-    "Email": "mariabonita2@gmail.com",
+    "Nome": "Maria232212",
+    "Email": "mariabonita22@gmail.com",
     "Telefone": "998890987",
-    "Endereco": "rua do passarinho 520",
-    "Locacoes": []
+    "Endereco": "rua do passarinho 520"
 }
 
 ### Alterar Cliente

@@ -9,15 +9,13 @@ POST http://localhost:5116/api/filme/cadastrar
 Content-Type: application/json
 
 {
-    "Titulo": "Os Vingadores2",
+    "Titulo": "Os Vingadores22",
     "Ano": 2019,
     "Genero": "Ação",
     "Sinopse": "Uma sinopse do filme",
     "Capa": "URL da capa do filme",
     "Descricao": "Descrição do filme",
-    "Disponivel": false,
-    "ClienteId": 2,
-    "Locacoes": []
+    "Disponivel": false
 }
 
 

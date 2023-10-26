@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Locadora_JEM_20.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20231009013347_create")]
-    partial class create
+    [Migration("20231025232433_createdatabase")]
+    partial class createdatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,12 +62,6 @@ namespace Locadora_JEM_20.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("ClienteId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("TEXT");
 
@@ -92,8 +86,6 @@ namespace Locadora_JEM_20.Migrations
 
                     b.HasKey("FilmeId");
 
-                    b.HasIndex("ClienteId");
-
                     b.ToTable("Filmes");
                 });
 
@@ -103,8 +95,7 @@ namespace Locadora_JEM_20.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ClienteId")
-                        .IsRequired()
+                    b.Property<int>("ClienteId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DataFim")
@@ -113,8 +104,7 @@ namespace Locadora_JEM_20.Migrations
                     b.Property<DateTime>("DataInicio")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("FilmeId")
-                        .IsRequired()
+                    b.Property<int>("FilmeId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("LocadoEm")
@@ -134,15 +124,6 @@ namespace Locadora_JEM_20.Migrations
                     b.HasIndex("FilmeId");
 
                     b.ToTable("Locacoes");
-                });
-
-            modelBuilder.Entity("Locadora_JEM_20.Models.Filme", b =>
-                {
-                    b.HasOne("Locadora_JEM_20.Models.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId");
-
-                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("Locadora_JEM_20.Models.Locacao", b =>

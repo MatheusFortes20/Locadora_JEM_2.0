@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Locadora_JEM_20.Migrations
 {
-    public partial class create : Migration
+    public partial class createdatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,18 +39,11 @@ namespace Locadora_JEM_20.Migrations
                     Capa = table.Column<string>(type: "TEXT", nullable: false),
                     Descricao = table.Column<string>(type: "TEXT", nullable: false),
                     Disponivel = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CriadoEm = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ClienteId = table.Column<int>(type: "INTEGER", nullable: true),
-                    ClientId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CriadoEm = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Filmes", x => x.FilmeId);
-                    table.ForeignKey(
-                        name: "FK_Filmes_Clientes_ClienteId",
-                        column: x => x.ClienteId,
-                        principalTable: "Clientes",
-                        principalColumn: "ClienteId");
                 });
 
             migrationBuilder.CreateTable(
@@ -85,11 +78,6 @@ namespace Locadora_JEM_20.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Filmes_ClienteId",
-                table: "Filmes",
-                column: "ClienteId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Locacoes_ClienteId",
                 table: "Locacoes",
                 column: "ClienteId");
@@ -106,10 +94,10 @@ namespace Locadora_JEM_20.Migrations
                 name: "Locacoes");
 
             migrationBuilder.DropTable(
-                name: "Filmes");
+                name: "Clientes");
 
             migrationBuilder.DropTable(
-                name: "Clientes");
+                name: "Filmes");
         }
     }
 }

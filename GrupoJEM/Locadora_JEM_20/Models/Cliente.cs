@@ -21,7 +21,6 @@ namespace Locadora_JEM_20.Models
         public string Endereco { get; set; }
         public DateTime CriadoEm { get; set; }
 
-        // Relacionamento com Locacao
-        public List<Locacao> Locacoes { get; set; } = null; // Um cliente pode locar vários filmes
+
     }
 }

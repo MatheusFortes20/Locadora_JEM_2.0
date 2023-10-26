@@ -15,8 +15,9 @@ namespace Locadora_JEM_20.Controllers
 
         public LocacaoController(AppDataContext ctx) => _ctx = ctx;
 
-        // Create (Criação de uma nova locação)
-        [HttpPost]
+       // Create (Criação de uma nova locação)
+// Create (Criação de uma nova locação)
+[HttpPost]
 [Route("cadastrar")]
 public IActionResult CadastrarLocacao([FromBody] Locacao locacao)
 {
@@ -26,41 +27,39 @@ public IActionResult CadastrarLocacao([FromBody] Locacao locacao)
         return BadRequest("O valor da locação deve ser maior que zero.");
     }
 
+    // Verifique se os campos 'ClienteId' e 'FilmeId' estão preenchidos
+    if (locacao.ClienteId == null || locacao.FilmeId == null)
+    {
+        return BadRequest("Os campos 'ClienteId' e 'FilmeId' são obrigatórios.");
+    }
+
+    // Verifique se os IDs são válidos
+    var cliente = _ctx.Clientes.FirstOrDefault(c => c.ClienteId == locacao.ClienteId);
+    var filme = _ctx.Filmes.FirstOrDefault(f => f.FilmeId == locacao.FilmeId);
+
+    if (cliente == null)
+    {
+        return BadRequest("Cliente não encontrado.");
+    }
+
+    if (filme == null)
+    {
+        return BadRequest("Filme não encontrado.");
+    }
+
+    // Verifique se o filme já está associado a algum cliente
+    var locacaoAtual = _ctx.Locacoes.FirstOrDefault(l => l.FilmeId == locacao.FilmeId);
+
+    if (locacaoAtual != null)
+    {
+        return BadRequest("Filme já está associado a um cliente.");
+    }
+
     // Adicione a locação ao contexto e salve as alterações
     _ctx.Locacoes.Add(locacao);
     _ctx.SaveChanges();
 
     return Created("", locacao);
-}
-
-// Associação de cliente e filme a uma locação existente
-[HttpPost]
-[Route("associar/{locacaoId}")]
-public IActionResult AssociarClienteFilme(int locacaoId, [FromBody] AssociacaoClienteFilmeDTO associacaoDTO)
-{
-    var locacao = _ctx.Locacoes.FirstOrDefault(l => l.LocacaoId == locacaoId);
-
-    if (locacao == null)
-    {
-        return NotFound("Locação não encontrada.");
-    }
-
-    var cliente = _ctx.Clientes.FirstOrDefault(c => c.ClienteId == associacaoDTO.ClienteId);
-    var filme = _ctx.Filmes.FirstOrDefault(f => f.FilmeId == associacaoDTO.FilmeId);
-
-    if (cliente == null || filme == null)
-    {
-        return NotFound("Cliente ou filme não encontrados.");
-    }
-
-    // Associe o cliente e o filme à locação
-    locacao.Cliente = cliente;
-    locacao.Filme = filme;
-
-    // Salve as alterações no contexto
-    _ctx.SaveChanges();
-
-    return Ok(locacao);
 }
 
         // Read (Recuperação de uma locação por ID)
@@ -75,43 +74,28 @@ public IActionResult AssociarClienteFilme(int locacaoId, [FromBody] AssociacaoCl
                 return Ok(locacao);
             }
 
-            return NotFound();
+             return BadRequest("Locação não encontrada!");
         }
 
-        // Update (Atualização de uma locação existente)
-        [HttpPut]
-        [Route("atualizar/{id}")]
-        public IActionResult Atualizar(int id, [FromBody] Locacao novaLocacao)
-        {
-            var locacao = _ctx.Locacoes.FirstOrDefault(l => l.LocacaoId == id);
-
-            if (locacao != null)
-            {
-                locacao.Valor = novaLocacao.Valor;
-                // Atualize outros campos conforme necessário
-                _ctx.SaveChanges();
-                return Ok(locacao);
-            }
-
-            return NotFound();
-        }
 
         // Delete (Exclusão de uma locação existente)
-        [HttpDelete]
-        [Route("deletar/{id}")]
-        public IActionResult Deletar(int id)
-        {
-            var locacao = _ctx.Locacoes.FirstOrDefault(l => l.LocacaoId == id);
+[HttpDelete]
+[Route("deletar/{id}")]
+public IActionResult Deletar(int id)
+{
+    var locacao = _ctx.Locacoes.FirstOrDefault(l => l.LocacaoId == id);
 
-            if (locacao != null)
-            {
-                _ctx.Locacoes.Remove(locacao);
-                _ctx.SaveChanges();
-                return NoContent();
-            }
+    if (locacao != null)
+    {
+        _ctx.Locacoes.Remove(locacao);
+        _ctx.SaveChanges();
 
-            return NotFound();
-        }
+        // Adicione uma mensagem de resposta personalizada
+        return Ok(new { message = $"A locação de ID {locacao.LocacaoId} foi deletada com sucesso!" });
+    }
+
+    return BadRequest("A locação não foi encontrada!");
+}
 
         // Listar todas as locações
         [HttpGet]
@@ -122,7 +106,7 @@ public IActionResult AssociarClienteFilme(int locacaoId, [FromBody] AssociacaoCl
 
             if (locacoes.Count == 0)
             {
-                return NotFound();
+                return BadRequest("Nenhuma locação foi encontrada!");
             }
 
             return Ok(locacoes);
