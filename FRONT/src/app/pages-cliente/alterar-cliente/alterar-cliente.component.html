@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Alterar Cliente</mat-card-title>
+    <mat-card-subtitle>&nbsp;</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field class="input" id="id">
+      <mat-label>Id</mat-label>
+      <input placeholder="Ex. 1" matInput type="text" [(ngModel)]="clienteId" disabled="true" />
+    </mat-form-field>
+    <mat-form-field class="input" id="nome">
+      <mat-label>Nome</mat-label>
+      <input placeholder="Ex. João da Silva" matInput type="text" [(ngModel)]="nome" />
+    </mat-form-field>
+    <mat-form-field class="input" id="email">
+      <mat-label>Email</mat-label>
+      <input placeholder="Ex. joao@email.com" matInput type="text" [(ngModel)]="email" />
+    </mat-form-field>
+    <mat-form-field class="input" id="telefone">
+      <mat-label>Telefone</mat-label>
+      <input placeholder="Ex. (99) 99999-9999" matInput type="text" [(ngModel)]="telefone" />
+    </mat-form-field>
+    <mat-form-field class="input" id="endereco">
+      <mat-label>Endereço</mat-label>
+      <input placeholder="Ex. Rua XYZ, 123" matInput type="text" [(ngModel)]="endereco" />
+    </mat-form-field>
+    <mat-form-field class="input" id="criadoEm">
+      <mat-label>Criado Em</mat-label>
+      <input matInput type="text" [(ngModel)]="criadoEm" disabled="true" />
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions>
+    <button color="warn" mat-stroked-button (click)="alterar()">Alterar</button>
+  </mat-card-actions>
+</mat-card>

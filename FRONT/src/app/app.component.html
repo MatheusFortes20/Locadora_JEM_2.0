@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+  <button (click)="sidenav.toggle()" mat-icon-button>
+    <mat-icon> menu </mat-icon>
+  </button>
+  <span> Ecommerce </span>
+</mat-toolbar>
+
+<mat-sidenav-container class="container">
+  <mat-sidenav #sidenav [opened]="true" mode="side">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/pages/produto/listar">
+        <div class="item">
+          <mat-icon class="icon"> list </mat-icon>
+          <span>Listar Produtos</span>
+        </div>
+      </a>
+      <a mat-list-item routerLink="/pages/produto/cadastrar">
+        <div class="item">
+          <mat-icon class="icon"> add </mat-icon>
+          <span>Cadastrar Produto</span>
+        </div>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="content">
+    <router-outlet>
+      <!-- Mostrar os componentes selecionados -->
+    </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- Barra lateral -->
+
+<!-- Conteúdo -->
