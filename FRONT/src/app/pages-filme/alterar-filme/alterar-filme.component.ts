@@ -1,84 +1,58 @@
-import { Filme } from './../../models/filme.model';
+// Alterar o nome da classe para AlterarFilmeComponent
 import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
+import { Filme } from "src/app/models/filme.model"; // Certifique-se de importar o modelo correto
 
 @Component({
-  selector: "app-alterar-filme",
+  selector: "app-alterar-filme", // Atualize o seletor conforme necessário
   templateUrl: "./alterar-filme.component.html",
   styleUrls: ["./alterar-filme.component.css"],
 })
-export class AlterarFilmeComponent {
-  filmeId: number | undefined = undefined;
+export class AlterarFilmeComponent { // Atualize o nome da classe conforme necessário
   titulo: string = "";
-  ano: number | undefined; // Remova a atribuição de undefined aqui
+  ano: number | null = null;
   genero: string = "";
   sinopse: string = "";
   capa: string = "";
   descricao: string = "";
   disponivel: boolean = false;
-  criadoEm: Date | null = null;
 
   constructor(
     private client: HttpClient,
     private router: Router,
-    private snackBar: MatSnackBar,
-    private route: ActivatedRoute
+    private snackBar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {
-    this.route.params.subscribe({
-      next: (parametros) => {
-        let { id } = parametros;
-        this.client.get<Filme>(`https://localhost:7083/api/filme/buscar/${id}`).subscribe({
-          next: (filme) => {
-            this.filmeId = filme.filmeId;
-            this.titulo = filme.titulo;
-            this.ano = filme.ano;
-            this.genero = filme.genero;
-            this.sinopse = filme.sinopse;
-            this.capa = filme.capa;
-            this.descricao = filme.descricao;
-            this.disponivel = filme.disponivel;
-            this.criadoEm = filme.criadoEm ? new Date(filme.criadoEm) : null;
-          },
-          // Requisição com erro
-          error: (erro) => {
-            console.log(erro);
-          },
-        });
-      },
-    });
-  }
-
   alterar(): void {
+    // Lógica para alterar o filme
+    // Certifique-se de incluir a lógica para recuperar o filme existente e preencher os campos do formulário
     let filme: Filme = {
-      filmeId: this.filmeId,
       titulo: this.titulo,
-      ano: this.ano,
+      ano: this.ano!,
       genero: this.genero,
       sinopse: this.sinopse,
       capa: this.capa,
       descricao: this.descricao,
       disponivel: this.disponivel,
-      criadoEm: this.criadoEm ? this.criadoEm.toISOString() : null,
+      // Adicione o ID do filme ou lógica apropriada para identificar o filme a ser alterado
     };
 
-    this.client.put<Filme>(`https://localhost:7083/api/filme/alterar/${this.filmeId}`, filme).subscribe({
-      // A requisição funcionou
-      next: (filme) => {
-        this.snackBar.open("Filme alterado com sucesso!!", "Locadora", {
-          duration: 1500,
-          horizontalPosition: "right",
-          verticalPosition: "top",
-        });
-        this.router.navigate(["caminho/para/listar/filmes"]);
-      },
-      // A requisição não funcionou
-      error: (erro) => {
-        console.log(erro);
-      },
-    });
+    this.client
+  .put<Filme>(`https://localhost:7083/api/filme/alterar/${filme.filmeId}`, filme)
+  .subscribe({
+    next: (filme) => {
+      this.snackBar.open("Filme alterado com sucesso!!", "Locadora", {
+        duration: 1500,
+        horizontalPosition: "right",
+        verticalPosition: "top",
+      });
+      this.router.navigate(["pages/filme/listar"]);
+    },
+    error: (erro) => {
+      console.log(erro);
+    },
+   });
   }
 }

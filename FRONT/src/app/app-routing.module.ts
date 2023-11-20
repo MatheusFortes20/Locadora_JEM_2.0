@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { ListarFilmeComponent } from "./pages-filme/listar-filme/listar-filme.component";
 import { CadastrarFilmeComponent } from "./pages-filme/cadastrar-filme/cadastrar-filme.component";
 import { AlterarFilmeComponent } from "./pages-filme/alterar-filme/alterar-filme.component";
+import { DeletarFilmeComponent } from "./pages-filme/deletar-filme/deletar-filme.component";
 
 const routes: Routes = [
   {
@@ -14,12 +15,16 @@ const routes: Routes = [
     component: ListarFilmeComponent,
   },
   {
-    path: "pages/produto/cadastrar",
+    path: "pages/filme/cadastrar",
     component: CadastrarFilmeComponent,
   },
   {
-    path: "pages/produto/alterar/:id",
+    path: "pages/filme/alterar",
     component: AlterarFilmeComponent,
+  },
+  {
+    path: "pages/filme/deletar",
+    component: DeletarFilmeComponent,
   },
 ];
 

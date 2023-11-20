@@ -4,10 +4,6 @@
     <mat-card-subtitle>&nbsp;</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <mat-form-field class="input" id="id">
-      <mat-label>Id</mat-label>
-      <input placeholder="Ex. 1" matInput type="text" [(ngModel)]="filmeId" disabled="true" />
-    </mat-form-field>
     <mat-form-field class="input" id="titulo">
       <mat-label>Título</mat-label>
       <input placeholder="Ex. Avengers" matInput type="text" [(ngModel)]="titulo" />
@@ -35,12 +31,10 @@
     <mat-form-field class="input" id="disponivel">
       <mat-checkbox [(ngModel)]="disponivel">Disponível</mat-checkbox>
     </mat-form-field>
-    <mat-form-field class="input" id="criadoEm">
-      <mat-label>Criado Em</mat-label>
-      <input matInput type="text" [(ngModel)]="criadoEm" disabled="true" />
-    </mat-form-field>
   </mat-card-content>
   <mat-card-actions>
-    <button color="warn" mat-stroked-button (click)="alterar()">Alterar</button>
+    <button color="warn" mat-stroked-button (click)="alterar()">
+      Alterar
+    </button>
   </mat-card-actions>
 </mat-card>

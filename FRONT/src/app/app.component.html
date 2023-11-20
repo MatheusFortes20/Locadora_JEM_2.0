@@ -8,16 +8,28 @@
 <mat-sidenav-container class="container">
   <mat-sidenav #sidenav [opened]="true" mode="side">
     <mat-nav-list>
-      <a mat-list-item routerLink="/pages/produto/listar">
-        <div class="item">
-          <mat-icon class="icon"> list </mat-icon>
-          <span>Listar Produtos</span>
-        </div>
-      </a>
-      <a mat-list-item routerLink="/pages/produto/cadastrar">
+      <a mat-list-item routerLink="/pages/filme/cadastrar">
         <div class="item">
           <mat-icon class="icon"> add </mat-icon>
-          <span>Cadastrar Produto</span>
+          <span>Cadastrar Filmes</span>
+        </div>
+      </a>
+      <a mat-list-item routerLink="/pages/filme/listar">
+        <div class="item">
+          <mat-icon class="icon"> list </mat-icon>
+          <span>Listar Filmes</span>
+        </div>
+      </a>
+      <a mat-list-item routerLink="/pages/filme/alterar">
+        <div class="item">
+          <mat-icon class="icon"> edit </mat-icon>
+          <span>Alterar Filmes</span>
+        </div>
+      </a>
+      <a mat-list-item routerLink="/pages/filme/deletar">
+        <div class="item">
+          <mat-icon class="icon"> delete </mat-icon>
+          <span>Deletar Filmes</span>
         </div>
       </a>
     </mat-nav-list>
@@ -28,7 +40,3 @@
     </router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-<!-- Barra lateral -->
-
-<!-- Conteúdo -->
