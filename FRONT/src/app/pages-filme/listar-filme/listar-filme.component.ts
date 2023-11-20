@@ -29,7 +29,7 @@ export class ListarFilmeComponent { // Atualize o nome da classe conforme necess
 
   ngOnInit(): void {
     this.client
-      .get<Filme[]>("https://localhost:7083/api/filme/listar")
+      .get<Filme[]>("http://localhost:5116/api/filme/listar")
       .subscribe({
         next: (filmes) => {
           this.filmes = filmes;
@@ -42,7 +42,7 @@ export class ListarFilmeComponent { // Atualize o nome da classe conforme necess
 
   deletar(filmeId: number) {
     this.client
-      .delete<Filme[]>(`https://localhost:7083/api/filme/deletar/${filmeId}`)
+      .delete<Filme[]>(`http://localhost:5116/api/filme/deletar/${filmeId}`)
       .subscribe({
         next: (filmes) => {
           this.filmes = filmes;
