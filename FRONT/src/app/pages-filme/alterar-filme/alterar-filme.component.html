@@ -4,32 +4,37 @@
     <mat-card-subtitle>&nbsp;</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
+    <mat-form-field class="input" id="filmeId">
+      <mat-label>ID do Filme</mat-label>
+      <input placeholder="Ex. 1" matInput type="text" [(ngModel)]="filmeId" name="filmeId">
+    </mat-form-field>
     <mat-form-field class="input" id="titulo">
       <mat-label>Título</mat-label>
-      <input placeholder="Ex. Avengers" matInput type="text" [(ngModel)]="titulo" />
+      <input placeholder="Ex. Avengers" matInput type="text" [(ngModel)]="titulo" name="titulo">
     </mat-form-field>
     <mat-form-field class="input" id="ano">
       <mat-label>Ano</mat-label>
-      <input placeholder="Ex. 2023" matInput type="text" [(ngModel)]="ano" />
+      <input placeholder="Ex. 2023" matInput type="text" [(ngModel)]="ano" name="ano">
     </mat-form-field>
     <mat-form-field class="input" id="genero">
       <mat-label>Gênero</mat-label>
-      <input placeholder="Ex. Ação" matInput type="text" [(ngModel)]="genero" />
+      <input placeholder="Ex. Ação" matInput type="text" [(ngModel)]="genero" name="genero">
     </mat-form-field>
     <mat-form-field class="input" id="sinopse">
       <mat-label>Sinopse</mat-label>
-      <textarea placeholder="Ex. Descrição do filme" matInput [(ngModel)]="sinopse"></textarea>
+      <textarea placeholder="Ex. Descrição do filme" matInput [(ngModel)]="sinopse" name="sinopse"></textarea>
     </mat-form-field>
     <mat-form-field class="input" id="capa">
       <mat-label>Capa</mat-label>
-      <input placeholder="Ex. URL da capa" matInput type="text" [(ngModel)]="capa" />
+      <input placeholder="Ex. URL da capa" matInput type="text" [(ngModel)]="capa" name="capa">
     </mat-form-field>
     <mat-form-field class="input" id="descricao">
       <mat-label>Descrição</mat-label>
-      <textarea placeholder="Ex. Descrição detalhada do filme" matInput [(ngModel)]="descricao"></textarea>
+      <textarea placeholder="Ex. Descrição detalhada do filme" matInput [(ngModel)]="descricao" name="descricao"></textarea>
     </mat-form-field>
     <mat-form-field class="input" id="disponivel">
-      <mat-checkbox [(ngModel)]="disponivel">Disponível</mat-checkbox>
+      <mat-label>Disponível</mat-label>
+      <mat-checkbox [(ngModel)]="disponivel" name="disponivel">Disponível</mat-checkbox>
     </mat-form-field>
   </mat-card-content>
   <mat-card-actions>

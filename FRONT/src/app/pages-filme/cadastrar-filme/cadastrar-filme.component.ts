@@ -1,15 +1,17 @@
+// cadastrar-filme.component.ts
+
 import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { Filme } from "src/app/models/filme.model"; // Certifique-se de importar o modelo correto
+import { Filme } from "src/app/models/filme.model";
 
 @Component({
-  selector: "app-cadastrar-filme", // Atualize o seletor conforme necessário
+  selector: "app-cadastrar-filme",
   templateUrl: "./cadastrar-filme.component.html",
   styleUrls: ["./cadastrar-filme.component.css"],
 })
-export class CadastrarFilmeComponent { // Atualize o nome da classe conforme necessário
+export class CadastrarFilmeComponent {
   titulo: string = "";
   ano: number | null = null;
   genero: string = "";
@@ -36,7 +38,7 @@ export class CadastrarFilmeComponent { // Atualize o nome da classe conforme nec
     };
 
     this.client
-      .post<Filme>("https://localhost:7083/api/filme/cadastrar", filme)
+      .post<Filme>("http://localhost:5116/api/filme/cadastrar", filme)
       .subscribe({
         next: (filme) => {
           this.snackBar.open("Filme cadastrado com sucesso!!", "Locadora", {
@@ -44,7 +46,7 @@ export class CadastrarFilmeComponent { // Atualize o nome da classe conforme nec
             horizontalPosition: "right",
             verticalPosition: "top",
           });
-          this.router.navigate(["pages/filme/listar"]); // Atualize o caminho conforme necessário
+          this.router.navigate(["pages/filme/listar"]);
         },
         error: (erro) => {
           console.log(erro);

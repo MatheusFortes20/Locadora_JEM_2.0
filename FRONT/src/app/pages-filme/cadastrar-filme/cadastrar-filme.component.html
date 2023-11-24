@@ -1,3 +1,4 @@
+
 <mat-card>
   <mat-card-header>
     <mat-card-title>Cadastrar Filme</mat-card-title>
@@ -5,28 +6,34 @@
   </mat-card-header>
   <mat-card-content>
     <mat-form-field class="input" id="titulo">
+      <mat-card-title>Título</mat-card-title>
       <mat-label>Título</mat-label>
       <input placeholder="Ex. Avengers" matInput type="text" [(ngModel)]="titulo" />
     </mat-form-field>
     <mat-form-field class="input" id="ano">
+      <mat-card-title>Ano</mat-card-title>
       <mat-label>Ano</mat-label>
       <input placeholder="Ex. 2023" matInput type="text" [(ngModel)]="ano" />
     </mat-form-field>
     <mat-form-field class="input" id="genero">
+      <mat-card-title>Gênero</mat-card-title>
       <mat-label>Gênero</mat-label>
       <input placeholder="Ex. Ação" matInput type="text" [(ngModel)]="genero" />
     </mat-form-field>
     <mat-form-field class="input" id="sinopse">
+      <mat-card-title>Sinopse</mat-card-title>
       <mat-label>Sinopse</mat-label>
-      <textarea placeholder="Ex. Descrição do filme" matInput [(ngModel)]="sinopse"></textarea>
+      <textarea placeholder="Sinopse" matInput [(ngModel)]="sinopse"></textarea>
     </mat-form-field>
     <mat-form-field class="input" id="capa">
+      <mat-card-title>Capa</mat-card-title>
       <mat-label>Capa</mat-label>
       <input placeholder="Ex. URL da capa" matInput type="text" [(ngModel)]="capa" />
     </mat-form-field>
     <mat-form-field class="input" id="descricao">
+      <mat-card-title>Descrição</mat-card-title>
       <mat-label>Descrição</mat-label>
-      <textarea placeholder="Ex. Descrição detalhada do filme" matInput [(ngModel)]="descricao"></textarea>
+      <textarea placeholder="Ex. Descrição" matInput [(ngModel)]="descricao"></textarea>
     </mat-form-field>
     <mat-form-field class="input" id="disponivel">
       <mat-checkbox [(ngModel)]="disponivel">Disponível</mat-checkbox>

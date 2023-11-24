@@ -1,16 +1,16 @@
-// Alterar o nome da classe para AlterarFilmeComponent
 import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { Filme } from "src/app/models/filme.model"; // Certifique-se de importar o modelo correto
+import { Filme } from "src/app/models/filme.model";
 
 @Component({
-  selector: "app-alterar-filme", // Atualize o seletor conforme necessário
+  selector: "app-alterar-filme",
   templateUrl: "./alterar-filme.component.html",
   styleUrls: ["./alterar-filme.component.css"],
 })
-export class AlterarFilmeComponent { // Atualize o nome da classe conforme necessário
+export class AlterarFilmeComponent {
+  filmeId: number | null = null;
   titulo: string = "";
   ano: number | null = null;
   genero: string = "";
@@ -26,9 +26,15 @@ export class AlterarFilmeComponent { // Atualize o nome da classe conforme neces
   ) {}
 
   alterar(): void {
+    // Certifique-se de que o ID do filme está preenchido
+    if (this.filmeId === null) {
+      console.log("ID do filme não fornecido.");
+      return;
+    }
+
     // Lógica para alterar o filme
-    // Certifique-se de incluir a lógica para recuperar o filme existente e preencher os campos do formulário
     let filme: Filme = {
+      filmeId: this.filmeId,
       titulo: this.titulo,
       ano: this.ano!,
       genero: this.genero,
@@ -36,23 +42,22 @@ export class AlterarFilmeComponent { // Atualize o nome da classe conforme neces
       capa: this.capa,
       descricao: this.descricao,
       disponivel: this.disponivel,
-      // Adicione o ID do filme ou lógica apropriada para identificar o filme a ser alterado
     };
 
     this.client
-  .put<Filme>(`https://localhost:7083/api/filme/alterar/${filme.filmeId}`, filme)
-  .subscribe({
-    next: (filme) => {
-      this.snackBar.open("Filme alterado com sucesso!!", "Locadora", {
-        duration: 1500,
-        horizontalPosition: "right",
-        verticalPosition: "top",
+      .put<Filme>(`https://localhost:5116/api/filme/atualizar/${filme.filmeId}`, filme)
+      .subscribe({
+        next: (filme) => {
+          this.snackBar.open("Filme alterado com sucesso!!", "Locadora", {
+            duration: 1500,
+            horizontalPosition: "right",
+            verticalPosition: "top",
+          });
+          this.router.navigate(["pages/filme/listar"]);
+        },
+        error: (erro) => {
+          console.log(erro);
+        },
       });
-      this.router.navigate(["pages/filme/listar"]);
-    },
-    error: (erro) => {
-      console.log(erro);
-    },
-   });
   }
 }
