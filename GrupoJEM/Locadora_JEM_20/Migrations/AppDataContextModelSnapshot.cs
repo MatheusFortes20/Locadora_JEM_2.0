@@ -23,7 +23,7 @@ namespace Locadora_JEM_20.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("CriadoEm")
+                    b.Property<DateTime?>("CriadoEm")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -127,7 +127,7 @@ namespace Locadora_JEM_20.Migrations
             modelBuilder.Entity("Locadora_JEM_20.Models.Locacao", b =>
                 {
                     b.HasOne("Locadora_JEM_20.Models.Cliente", "Cliente")
-                        .WithMany("Locacoes")
+                        .WithMany()
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -141,11 +141,6 @@ namespace Locadora_JEM_20.Migrations
                     b.Navigation("Cliente");
 
                     b.Navigation("Filme");
-                });
-
-            modelBuilder.Entity("Locadora_JEM_20.Models.Cliente", b =>
-                {
-                    b.Navigation("Locacoes");
                 });
 #pragma warning restore 612, 618
         }

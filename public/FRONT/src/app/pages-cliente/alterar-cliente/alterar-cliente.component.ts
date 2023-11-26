@@ -38,7 +38,6 @@ export class AlterarClienteComponent {
             this.email = cliente.email;
             this.telefone = cliente.telefone;
             this.endereco = cliente.endereco;
-            this.criadoEm = cliente.criadoEm;
           },
           error: (erro) => {
             console.log(erro);

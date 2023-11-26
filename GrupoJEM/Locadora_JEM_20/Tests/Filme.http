@@ -20,7 +20,7 @@ Content-Type: application/json
 
 
 ### Atualizar Filme por ID
-PUT http://localhost:5116/api/filme/atualizar/2
+PUT http://localhost:5116/api/filme/atualizar/12
 Content-Type: application/json
 
 {
@@ -30,7 +30,7 @@ Content-Type: application/json
     "Sinopse": "Nova sinopse do filme",
     "Capa": "Nova URL da capa do filme",
     "Descricao": "Nova descrição do filme",
-    "Disponivel": false,
+    "Disponivel": true,
     "Locacoes": []
 }
 

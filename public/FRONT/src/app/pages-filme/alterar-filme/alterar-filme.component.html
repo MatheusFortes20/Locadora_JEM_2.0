@@ -6,31 +6,31 @@
   <mat-card-content>
     <mat-form-field class="input" id="filmeId">
       <mat-label>ID do Filme</mat-label>
-      <input placeholder="Ex. 1" matInput type="text" [(ngModel)]="filmeId" name="filmeId">
+      <input placeholder="Ex. 1" matInput type="text" [(ngModel)]="filmeId" name="filmeId" mat-error="ID do filme não pode estar vazio.">
     </mat-form-field>
     <mat-form-field class="input" id="titulo">
       <mat-label>Título</mat-label>
-      <input placeholder="Ex. Avengers" matInput type="text" [(ngModel)]="titulo" name="titulo">
+      <input placeholder="Ex. Avengers" matInput type="text" [(ngModel)]="titulo" name="titulo" mat-error="Título não pode estar vazio.">
     </mat-form-field>
     <mat-form-field class="input" id="ano">
       <mat-label>Ano</mat-label>
-      <input placeholder="Ex. 2023" matInput type="text" [(ngModel)]="ano" name="ano">
+      <input placeholder="Ex. 2023" matInput type="text" [(ngModel)]="ano" name="ano" mat-error="Ano não pode estar vazio.">
     </mat-form-field>
     <mat-form-field class="input" id="genero">
       <mat-label>Gênero</mat-label>
-      <input placeholder="Ex. Ação" matInput type="text" [(ngModel)]="genero" name="genero">
+      <input placeholder="Ex. Ação" matInput type="text" [(ngModel)]="genero" name="genero" mat-error="Gênero não pode estar vazio.">
     </mat-form-field>
     <mat-form-field class="input" id="sinopse">
       <mat-label>Sinopse</mat-label>
-      <textarea placeholder="Ex. Descrição do filme" matInput [(ngModel)]="sinopse" name="sinopse"></textarea>
+      <textarea placeholder="Ex. Sinopse do filme" matInput [(ngModel)]="sinopse" name="sinopse" mat-error="Sinopse não pode estar vazia."></textarea>
     </mat-form-field>
     <mat-form-field class="input" id="capa">
       <mat-label>Capa</mat-label>
-      <input placeholder="Ex. URL da capa" matInput type="text" [(ngModel)]="capa" name="capa">
+      <input placeholder="Ex. URL da capa" matInput type="text" [(ngModel)]="capa" name="capa" mat-error="Capa não pode estar vazia.">
     </mat-form-field>
     <mat-form-field class="input" id="descricao">
       <mat-label>Descrição</mat-label>
-      <textarea placeholder="Ex. Descrição detalhada do filme" matInput [(ngModel)]="descricao" name="descricao"></textarea>
+      <textarea placeholder="Ex. Descrição detalhada do filme" matInput [(ngModel)]="descricao" name="descricao" mat-error="Descrição não pode estar vazia."></textarea>
     </mat-form-field>
     <mat-form-field class="input" id="disponivel">
       <mat-label>Disponível</mat-label>

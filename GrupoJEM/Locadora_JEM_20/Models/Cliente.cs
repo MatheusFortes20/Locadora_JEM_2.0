@@ -19,7 +19,7 @@ namespace Locadora_JEM_20.Models
         public string Email { get; set; }
         public string Telefone { get; set; }
         public string Endereco { get; set; }
-        public DateTime CriadoEm { get; set; }
+        public DateTime? CriadoEm { get; set; }
 
 
     }

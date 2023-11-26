@@ -25,6 +25,9 @@ import { CadastrarClienteComponent } from "./pages-cliente/cadastrar-cliente/cad
 import { AlterarClienteComponent } from "./pages-cliente/alterar-cliente/alterar-cliente.component";
 import { ListarClienteComponent } from "./pages-cliente/listar-cliente/listar-cliente.component";
 import { DeletarClienteComponent } from "./pages-cliente/deletar-cliente/deletar-cliente.component";
+import { CadastrarLocacaoComponent } from "./pages-locacao/cadastrar-locacao/cadastrar-locacao.component";
+import { ListarLocacaoComponent } from "./pages-locacao/listar-locacao/listar-locacao.component";
+import { DeletarLocacaoComponent } from "./pages-locacao/deletar-locacao/deletar-locacao.component";
 
 @NgModule({
   //Componentes da aplicação
@@ -37,7 +40,10 @@ import { DeletarClienteComponent } from "./pages-cliente/deletar-cliente/deletar
     CadastrarClienteComponent,
     AlterarClienteComponent,
     ListarClienteComponent,
-    DeletarClienteComponent
+    DeletarClienteComponent,
+    CadastrarLocacaoComponent,
+    ListarLocacaoComponent,
+    DeletarLocacaoComponent
   ],
   //Bibliotecas externas da aplicação
   imports: [

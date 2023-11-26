@@ -8,6 +8,9 @@ import { CadastrarClienteComponent } from "./pages-cliente/cadastrar-cliente/cad
 import { AlterarClienteComponent } from "./pages-cliente/alterar-cliente/alterar-cliente.component";
 import { ListarClienteComponent } from "./pages-cliente/listar-cliente/listar-cliente.component";
 import { DeletarClienteComponent } from "./pages-cliente/deletar-cliente/deletar-cliente.component";
+import { CadastrarLocacaoComponent } from "./pages-locacao/cadastrar-locacao/cadastrar-locacao.component";
+import { ListarLocacaoComponent } from "./pages-locacao/listar-locacao/listar-locacao.component";
+import { DeletarLocacaoComponent } from "./pages-locacao/deletar-locacao/deletar-locacao.component";
 
 const routes: Routes = [
   {
@@ -45,6 +48,18 @@ const routes: Routes = [
   {
     path: "pages/cliente/deletar",
     component: DeletarClienteComponent,
+  },
+  {
+    path: "pages/locacao/cadastrar",
+    component: CadastrarLocacaoComponent,
+  },
+  {
+    path: "pages/locacao/listar",
+    component: ListarLocacaoComponent,
+  },
+  {
+    path: "pages/locacao/deletar",
+    component: DeletarLocacaoComponent,
   },
 ];
 

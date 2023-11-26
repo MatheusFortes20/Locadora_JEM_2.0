@@ -1,0 +1,9 @@
+:host {
+  display: block;
+  padding: 16px;
+}
+
+.confirmation-message {
+  color: red;
+  margin-bottom: 16px;
+}

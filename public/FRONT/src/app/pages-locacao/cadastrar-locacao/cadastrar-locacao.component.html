@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Cadastrar Locação</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field class="input">
+      <mat-label>Valor</mat-label>
+      <input placeholder="Ex. 10.99" matInput type="number" [(ngModel)]="locacao.valor" />
+    </mat-form-field>
+    <mat-form-field class="input">
+      <mat-label>Observações</mat-label>
+      <textarea placeholder="Observações adicionais (opcional)" matInput [(ngModel)]="locacao.observacoes"></textarea>
+    </mat-form-field>
+    <mat-form-field class="input">
+      <mat-label>Filme ID</mat-label>
+      <input placeholder="Ex. 2" matInput type="number" [(ngModel)]="locacao.filmeId" />
+    </mat-form-field>
+    <mat-form-field class="input">
+      <mat-label>Cliente ID</mat-label>
+      <input placeholder="Ex. 2" matInput type="number" [(ngModel)]="locacao.clienteId" />
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions>
+    <button color="warn" mat-stroked-button (click)="cadastrarLocacao()">Cadastrar</button>
+  </mat-card-actions>
+</mat-card>
