@@ -4,6 +4,10 @@ import { ListarFilmeComponent } from "./pages-filme/listar-filme/listar-filme.co
 import { CadastrarFilmeComponent } from "./pages-filme/cadastrar-filme/cadastrar-filme.component";
 import { AlterarFilmeComponent } from "./pages-filme/alterar-filme/alterar-filme.component";
 import { DeletarFilmeComponent } from "./pages-filme/deletar-filme/deletar-filme.component";
+import { CadastrarClienteComponent } from "./pages-cliente/cadastrar-cliente/cadastrar-cliente.component";
+import { AlterarClienteComponent } from "./pages-cliente/alterar-cliente/alterar-cliente.component";
+import { ListarClienteComponent } from "./pages-cliente/listar-cliente/listar-cliente.component";
+import { DeletarClienteComponent } from "./pages-cliente/deletar-cliente/deletar-cliente.component";
 
 const routes: Routes = [
   {
@@ -25,6 +29,22 @@ const routes: Routes = [
   {
     path: "pages/filme/deletar",
     component: DeletarFilmeComponent,
+  },
+  {
+    path: "pages/cliente/cadastrar",
+    component: CadastrarClienteComponent,
+  },
+  {
+    path: "pages/cliente/listar",
+    component: ListarClienteComponent,
+  },
+  {
+    path: "pages/cliente/alterar",
+    component: AlterarClienteComponent,
+  },
+  {
+    path: "pages/cliente/deletar",
+    component: DeletarClienteComponent,
   },
 ];
 

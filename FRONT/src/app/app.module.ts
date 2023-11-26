@@ -21,6 +21,10 @@ import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AlterarFilmeComponent}  from './pages-filme/alterar-filme/alterar-filme.component';
 import { DeletarFilmeComponent } from "./pages-filme/deletar-filme/deletar-filme.component";
+import { CadastrarClienteComponent } from "./pages-cliente/cadastrar-cliente/cadastrar-cliente.component";
+import { AlterarClienteComponent } from "./pages-cliente/alterar-cliente/alterar-cliente.component";
+import { ListarClienteComponent } from "./pages-cliente/listar-cliente/listar-cliente.component";
+import { DeletarClienteComponent } from "./pages-cliente/deletar-cliente/deletar-cliente.component";
 
 @NgModule({
   //Componentes da aplicação
@@ -29,7 +33,11 @@ import { DeletarFilmeComponent } from "./pages-filme/deletar-filme/deletar-filme
     ListarFilmeComponent,
     CadastrarFilmeComponent,
     AlterarFilmeComponent,
-    DeletarFilmeComponent
+    DeletarFilmeComponent,
+    CadastrarClienteComponent,
+    AlterarClienteComponent,
+    ListarClienteComponent,
+    DeletarClienteComponent
   ],
   //Bibliotecas externas da aplicação
   imports: [

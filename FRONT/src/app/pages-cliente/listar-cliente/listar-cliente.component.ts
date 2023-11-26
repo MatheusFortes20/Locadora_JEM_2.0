@@ -1,7 +1,8 @@
+// pages-cliente/listar-cliente/listar-cliente.component.ts
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { Cliente } from "src/app/models/cliente.models";
+import { Cliente } from "src/app/models/cliente.model";
 
 @Component({
   selector: "app-listar-cliente",
@@ -24,8 +25,9 @@ export class ListarClienteComponent implements OnInit {
   constructor(private client: HttpClient, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
+    // Ajuste da URL para apontar para o backend correto
     this.client
-      .get<Cliente[]>("https://localhost:7083/api/cliente/listar")
+      .get<Cliente[]>("http://localhost:5116/api/cliente/listar")
       .subscribe({
         next: (clientes) => {
           this.clientes = clientes;
@@ -37,8 +39,9 @@ export class ListarClienteComponent implements OnInit {
   }
 
   deletar(clienteId: number) {
+    // Ajuste da URL para apontar para o backend correto
     this.client
-      .delete<Cliente[]>(`https://localhost:7083/api/cliente/deletar/${clienteId}`)
+      .delete<Cliente[]>(`http://localhost:5116/api/cliente/deletar/${clienteId}`)
       .subscribe({
         next: (clientes) => {
           this.clientes = clientes;

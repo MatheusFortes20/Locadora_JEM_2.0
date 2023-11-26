@@ -18,7 +18,7 @@ export class CadastrarFilmeComponent {
   sinopse: string = "";
   capa: string = "";
   descricao: string = "";
-  disponivel: boolean = false;
+  disponivel: boolean = true;
 
   constructor(
     private client: HttpClient,

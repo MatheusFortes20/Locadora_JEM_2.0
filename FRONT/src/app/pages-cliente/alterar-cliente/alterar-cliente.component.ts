@@ -1,4 +1,4 @@
-import { Cliente } from 'src/app/models/cliente.models';
+import { Cliente } from 'src/app/models/cliente.model';
 import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -17,6 +17,9 @@ export class AlterarClienteComponent {
   endereco: string = "";
   criadoEm: Date | null = null;
 
+  mensagemErro: string | null = null;
+  mensagemSucesso: string | null = null;
+
   constructor(
     private client: HttpClient,
     private router: Router,
@@ -28,7 +31,7 @@ export class AlterarClienteComponent {
     this.route.params.subscribe({
       next: (parametros) => {
         let { id } = parametros;
-        this.client.get<Cliente>(`https://localhost:7083/api/cliente/buscar/${id}`).subscribe({
+        this.client.get<Cliente>(`http://localhost:5116/api/cliente/buscar/${id}`).subscribe({
           next: (cliente) => {
             this.clienteId = cliente.clienteId;
             this.nome = cliente.nome;
@@ -37,7 +40,6 @@ export class AlterarClienteComponent {
             this.endereco = cliente.endereco;
             this.criadoEm = cliente.criadoEm;
           },
-          // Requisição com erro
           error: (erro) => {
             console.log(erro);
           },
@@ -47,7 +49,11 @@ export class AlterarClienteComponent {
   }
 
   alterar(): void {
-    this.clienteId = this.clienteId || 0;  // Define 0 como valor padrão se for undefined
+    if (!this.clienteId) {
+      console.error("ID do cliente não fornecido.");
+      return;
+    }
+
     let cliente: Cliente = {
       clienteId: this.clienteId,
       nome: this.nome,
@@ -56,21 +62,20 @@ export class AlterarClienteComponent {
       endereco: this.endereco,
       criadoEm: this.criadoEm!,
     };
-  
-    this.client.put<Cliente>(`https://localhost:7083/api/cliente/alterar/${this.clienteId}`, cliente).subscribe({
-      // A requisição funcionou
-      next: (cliente) => {
-        this.snackBar.open("Cliente alterado com sucesso!!", "Locadora", {
-          duration: 1500,
-          horizontalPosition: "right",
-          verticalPosition: "top",
-        });
-        this.router.navigate(["caminho/para/listar/clientes"]);
-      },
-      // A requisição não funcionou
-      error: (erro) => {
-        console.log(erro);
-      },
-    });
+
+    this.client
+      .put<Cliente>(`http://localhost:5116/api/cliente/alterar/${this.clienteId}`, cliente)
+      .subscribe({
+        next: (cliente) => {
+          this.mensagemSucesso = "Cliente alterado com sucesso!!";
+          this.mensagemErro = null;
+          this.router.navigate(["/clientes"]);  // Modifique para o caminho correto da lista de clientes
+        },
+        error: (erro) => {
+          console.log(erro);
+          this.mensagemErro = "Erro ao tentar alterar o cliente. Verifique os dados e tente novamente.";
+          this.mensagemSucesso = null;
+        },
+      });
   }
 }

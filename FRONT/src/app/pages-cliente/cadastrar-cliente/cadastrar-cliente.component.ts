@@ -1,4 +1,4 @@
-import { Cliente } from "src/app/models/cliente.models";
+import { Cliente } from "src/app/models/cliente.model";
 import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
   templateUrl: "./cadastrar-cliente.component.html",
   styleUrls: ["./cadastrar-cliente.component.css"],
 })
+
 export class CadastrarClienteComponent {
   nome: string = "";
   email: string = "";
@@ -32,15 +33,19 @@ export class CadastrarClienteComponent {
     };
 
     this.client
-      .post<Cliente>("https://localhost:7083/api/cliente/cadastrar", cliente)
+      .post<Cliente>("http://localhost:5116/api/cliente/cadastrar", cliente)
       .subscribe({
         next: (cliente) => {
-          this.snackBar.open("Cliente cadastrado com sucesso!!", "Locadora", {
-            duration: 1500,
-            horizontalPosition: "right",
-            verticalPosition: "top",
-          });
-          this.router.navigate(["caminho/para/listar/clientes"]);
+          this.snackBar.open(
+            "Cliente cadastrado com sucesso!!",
+            "Locadora",
+            {
+              duration: 1500,
+              horizontalPosition: "right",
+              verticalPosition: "top",
+            }
+          );
+          this.router.navigate(["pages/cliente/listar"]);
         },
         error: (erro) => {
           console.log(erro);

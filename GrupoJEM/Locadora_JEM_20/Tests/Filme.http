@@ -35,4 +35,4 @@ Content-Type: application/json
 }
 
 ### Deletar Filme por ID
-DELETE http://localhost:5116/api/filme/deletar/3
+DELETE http://localhost:5116/api/filme/deletar/7
