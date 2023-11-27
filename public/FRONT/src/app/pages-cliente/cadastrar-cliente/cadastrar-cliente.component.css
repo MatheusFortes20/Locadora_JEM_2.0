@@ -3,9 +3,9 @@ mat-card {
   width: 400px;
   margin: 20px auto;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
+  box-shadow: 0 4px 8px rgba(128, 0, 128, 0.2);
+  /*0 4px 8px rgba(194, 4, 252, 0.1);*/
+} 
 mat-card-title {
   font-size: 1.5em;
   font-weight: bold;
