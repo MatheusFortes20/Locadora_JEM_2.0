@@ -1,7 +1,8 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { Filme } from "src/app/models/filme.model";
-import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-alterar-filme",
@@ -21,6 +22,7 @@ export class AlterarFilmeComponent implements OnInit {
   constructor(
     private client: HttpClient,
     private router: Router,
+    private snackBar: MatSnackBar,
     private route: ActivatedRoute
   ) {}
 
@@ -69,6 +71,11 @@ export class AlterarFilmeComponent implements OnInit {
     .put<Filme>(`https://localhost:5116/api/filme/atualizar/${filme.filmeId}`, filme)
     .subscribe({
       next: (updatedFilme) => {
+        this.snackBar.open("Filme alterado com sucesso!!", "locadora.db", {
+          duration: 1500,
+          horizontalPosition: "right",
+          verticalPosition: "top",
+        });
         this.router.navigate(["pages/filme/listar"]);
       },
       error: (error) => {
